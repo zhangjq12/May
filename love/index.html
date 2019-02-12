@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>这是我们的第二个情人节</title>
+
+<style type="text/css">
+@font-face {
+	font-family: digit;
+	src: url('digital-7_mono.ttf') format("truetype");
+}
+</style>
+
+<link href="css/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/garden.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+
+</head>
+
+<body>
+
+<div id="mainDiv">
+	<div id="pic">
+		<ul class="banner">
+			<li><img src="img/1.jpg" /></li>
+			<li><img src="img/2.jpg" /></li>
+			<li><img src="img/3.jpg" /></li>
+			<li><img src="img/4.jpg" /></li>
+		</ul>
+	</div>
+	<div id="content">
+		<div id="code">
+			<span class="comments">/**</span><br />
+			<span class="space"/><span class="comments">*2018-02-09,</span><br />
+			<span class="space"/><span class="comments">*2019-02-14.</span><br />
+			<span class="space"/><span class="comments">*/</span><br />
+			Boy name = <span class="keyword">Patrick</span> Zhang<br />
+			Girl name = <span class="keyword">May</span> Cen<br />
+			<span class="comments">我们的故事 </span><br />
+			The boy love the girl;<br />
+			<span class="comments">在杭州展开 </span><br />
+			At the same time,<br />
+			The girl loved the boy;<br />
+			<span class="comments">在武汉升温 </span><br />
+			The boy can not be separated the girl;<br />
+			<span class="comments">在东极升华 </span><br />
+			And then,<br/>
+			The girl can not be separated the boy.<br />
+			<span class="comments">在跨国恋爱中寻找幸福 </span><br />
+			<span class="comments">又在环游中国中更加温馨 </span><br />
+			<span class="comments">只想在我们以后的每一刻 </span><br />
+			<span class="comments">都会像在现在一样甜蜜❤️ </span><br />
+			<span class="keyword">Patrick</span> 一直爱 <span class="keyword">May</span>;<br />
+			<span class="keyword">May</span> 也会一直爱 <span class="keyword">Patrick</span>;<br />
+			<br>
+			<br>
+			Because of that,<br />
+			I want to say:<br />
+			Baby, I will be always in love with you!<br />
+		</div>
+		<div id="loveHeart">
+			<canvas id="garden">
+			</canvas>
+			<div id="words">
+				<div id="messages">
+					我的May喵，我们已经认识:
+					<div id="elapseClock"></div>
+				</div>
+				<div id="loveu">
+					猪蹄一直守护着我的喵喵，猪蹄一直环抱着我最爱的喵喵！<br/>
+					<div class="signature">- 你的猪猪</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var offsetX = $("#loveHeart").width() / 2;
+var offsetY = $("#loveHeart").height() / 2 - 55;
+var together = new Date();
+together.setFullYear(2018, 2, 9);
+together.setHours(19);
+together.setMinutes(30);
+together.setSeconds(0);
+together.setMilliseconds(0);
+
+
+if (!document.createElement('canvas').getContext) {
+	var msg = document.createElement("div");
+	msg.id = "errorMsg";
+	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+	document.body.appendChild(msg);
+	$("#code").css("display", "none")
+	$("#copyright").css("position", "absolute");
+	$("#copyright").css("bottom", "10px");
+	document.execCommand("stop");
+} else {
+	setTimeout(function () {
+		startHeartAnimation();
+	}, 5000);
+
+	timeElapse(together);
+	setInterval(function () {
+		timeElapse(together);
+	}, 500);
+
+	adjustCodePosition();
+	$("#code").typewriter();
+
+	var Fpic = $(".banner li");
+         var Lpic = Fpic.find("img");
+ 
+         //图片自适应浏览器窗口大小
+         var winW, winH;
+         function findSize() {
+             if (window.innerHeight && window.innerWidth) {
+                 winW = window.innerWidth;
+                 winH = window.innerHeight;
+             }
+             if (document.documentElement.clientHeight && document.documentElement.clientWidth) {
+                 winW = document.documentElement.clientWidth;
+                 winH = document.documentElement.clientHeight;
+             }
+             if (document.body.clientHeight && document.body.clientWidth) {
+                 winW = document.body.clientWidth;
+                 winH = document.body.clientHeight;
+             }
+             Lpic.css({ "width": winW, "height": winH });
+         }
+         window.onload = findSize;
+         window.onresize = window_resize;
+         var resizeTimeoutId;
+         function window_resize(e) {
+             window.clearTimeout(resizeTimeoutId);
+             resizeTimeoutId = window.setTimeout('findSize();', 100);
+         }
+ 
+         //图片轮播动画
+         var FpicNum = Fpic.length;
+         Fpic.eq(0).fadeIn();
+         var now = 0;
+         setInterval(function () {
+ 
+             if (now >= FpicNum - 1) {
+				 Fpic.eq(FpicNum - 1).stop().fadeOut(1000);
+                 now = -1;
+             }
+             Fpic.eq(now).stop().fadeOut(1000);
+             now++;
+             Fpic.eq(now).stop().fadeIn(1000);
+         }, 5000);
+}
+</script>
+
+</body>
+</html>

@@ -151,18 +151,6 @@ if (!document.createElement('canvas').getContext) {
              now++;
              Fpic.eq(now).stop().fadeIn(1000);
          }, 5000);
-	
-	var i=0;
-    	setInterval('changeColor()',5000);
-        function changeColor(){
-            var div=document.getElementById('message'); //获得div元素
-            var colorArr=['#d8ff6c','#69f8b1','#29bfec','#ecd829']; //建立颜色库
-            if(i==colorArr.length){ 
-                    i=0;
-                }else{
-                    div.style.color=colorArr[i++%colorArr.length]; //循环颜色
-                }
-            }
 }
 </script>
 
